@@ -124,8 +124,8 @@ victor = Person(
     interests=[],
     hobbies=["Cybersecurity", "Programming", "Drumming", "Making music", "Obviously spending time with close friends and family!"],
     skills=[
-        Skill("Defensive security", 4.28, 3.5, 3),
-        Skill("Offensive security", 4.6, 4.78, 4.36),
+        Skill("Defensive security", 4.28, 3.4, 3.5, 3),
+        Skill("Offensive security", 4.6, 4.78, 4.36, 4),
         Skill("Programming", 4.5, 4.8, 5, 4),
         Skill("Cybersecurity", 4.7, 4.9, 5, 4.5)
     ],
