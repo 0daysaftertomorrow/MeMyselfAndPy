@@ -6,7 +6,7 @@ init()
 class About:
     def __init__(self):
         self.hobbies = ["Cybersecurity", "Programming", "Drumming", "Making music", "Obviously spending time with close friends and family!"]
-        self.interests = []
+        self.interests = ["A general love for learning new things, meeting interesting people and just grow as a person!"]
         self.traits = ["Detail-oriented", "Analytical with a very high work ethic", "Teamwork makes the dream work! I truly believe in a diverse range of opinions and personalities in a team, which all bring something different to the table, what I only care about is merit and hoping to find a workplace where people genuinely are eager to get to work, see if you and your team can crack that problem that you've spent the night thinking about, that's something truly wonderful -People loving their work, which most often rubs of and creates a really fun, productive and learning environment for everyone!"]
 
 class Program:
@@ -64,7 +64,9 @@ class Person:
 
     def experience(self):
         return {
+            "Penetration testing": "No matter if it's different forms of bug bounty hunting, to more proper OSCP kind of engagement, I'm here for it and I'm always looking to learn and grow!",
             "OSINT": "Experience in gathering and analyzing information from open sources",
+            "SOC/Analyst roles: Having used basically every single major SIEM/XDR-systems known to man, along with decades of learning new software ranging from Adobes Photoshop, AE, Premiere, moving to 3D-modelling/rendering software like Cinema 4D, or 3DS Max, to infinity and beyond has provided a natural methodology for adapting to new tech, which also happens to be something I find super interesting, so lucky me!"
             "Problem-solving": "Experience in breaking down and solving complex problems",
             "Data analysis": "Experience in analyzing large amounts of data and drawing insightful conclusions"
         }
@@ -115,13 +117,15 @@ victor = Person(
     firstname="Victor",
     lastname="Åhgren",
     age=34,
-    jobtitles=["Cyber Security Consultant"],
+    jobtitles=["Cyber Security Consultant/Analyst/Engineer"],
     website="https://victorahgren.com/",
     blog="https://victorahgren.notion.site/VICTOR-HGREN-CYBER-SECURITY-SPECIALIST-f9e8a93d1a634af09c7d1ce083ade798",
     musicsite="https://open.spotify.com/user/XXXXX",
     interests=[],
     hobbies=["Cybersecurity", "Programming", "Drumming", "Making music", "Obviously spending time with close friends and family!"],
     skills=[
+        Skill("Defensive security", 4.28, 3.5, 3),
+        Skill("Offensive security", 4.6, 4.78, 4.36),
         Skill("Programming", 4.5, 4.8, 5, 4),
         Skill("Cybersecurity", 4.7, 4.9, 5, 4.5)
     ],
