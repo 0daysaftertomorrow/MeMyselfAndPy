@@ -19,6 +19,10 @@ A fun little project for trying to describe myself (mostly for a bit of a new ta
 - [Contributing](#contributing)
 - [License](#license)
 
+## Preview
+   ![image](https://github.com/user-attachments/assets/855d62cd-89a1-4478-9334-182e67a25fcb)
+
+
 ## Introduction
 
 This project is designed to encapsulate and display the personal and professional details of anyone, but in this case me, a cybersecurity consultant with a diverse range of skills and interests. The information includes skills, programs, programming languages, hobbies, and personal traits.
