@@ -7,7 +7,8 @@ class About:
     def __init__(self):
         self.hobbies = ["Cybersecurity", "Programming", "Drumming", "Making music", "Obviously spending time with close friends and family!"]
         self.interests = ["A general love for learning new things, meeting interesting people and just grow as a person!"]
-        self.traits = ["Detail-oriented", "Analytical with a very high work ethic", "Teamwork makes the dream work! I truly believe in a diverse range of opinions and personalities in a team, which all bring something different to the table, what I only care about is merit and hoping to find a workplace where people genuinely are eager to get to work, see if you and your team can crack that problem that you've spent the night thinking about, that's something truly wonderful -People loving their work, which most often rubs off and creates a really fun, productive and learning environment for everyone!"]
+        self.traits = ["Detail-oriented", "Analytical with a very high work ethic", 
+                       "Teamwork makes the dream work! I truly believe in a diverse range of opinions and personalities in a team. What I care about is merit and how each person contributes to the end goal."]
 
     def add_hobby(self, hobby):
         self.hobbies.append(hobby)
@@ -42,7 +43,7 @@ class Skill:
         self.usage_time = usage_time
 
 class Person:
-    def __init__(self, firstname, lastname, age, jobtitles, website, blog, musicsite, interests, hobbies, skills, traits, programs, programming_languages):
+    def __init__(self, firstname, lastname, age, jobtitles, website, blog, musicsite, bonus_skills, interests, hobbies, skills, traits, programs, programming_languages):
         self.firstname = firstname
         self.lastname = lastname
         self.age = age
@@ -51,6 +52,7 @@ class Person:
         self.blog = blog
         self.musicsite = musicsite
         self.interests = interests
+        self.bonus_skills = bonus_skills
         self.hobbies = hobbies
         self.skills = skills
         self.traits = traits
@@ -65,6 +67,9 @@ class Person:
 
     def add_interest(self, interest):
         self.interests.append(interest)
+
+    def add_bonus_skill(self, bonus_skill):
+        self.bonus_skills.append(bonus_skill)
 
     def add_hobby(self, hobby):
         self.hobbies.append(hobby)
@@ -92,13 +97,13 @@ class Person:
             return "Might know what it is, but haven't handled it directly", n
 
     def experience(self):
-        return {
-            "Penetration testing": "No matter if it's different forms of bug bounty hunting, to more proper OSCP kind of engagement, I'm here for it and I'm always looking to learn and grow!",
-            "OSINT": "Experience in gathering and analyzing information from open sources",
-            "SOC/Analyst roles": "Having used basically every single major SIEM/XDR-systems known to man, along with decades of learning new software ranging from Adobe's Photoshop, AE, Premiere, moving to 3D-modelling/rendering software like Cinema 4D, or 3DS Max, to infinity and beyond has provided a natural methodology for adapting to new tech, which also happens to be something I find super interesting, so lucky me!",
-            "Problem-solving": "Experience in breaking down and solving complex problems",
-            "Data analysis": "Experience in analyzing large amounts of data and drawing insightful conclusions"
-        }
+        return [
+            f"{Fore.LIGHTBLUE_EX} Penetration testing:{Style.RESET_ALL} No matter if it's different forms of bug bounty hunting, to more proper OSCP kind of engagement, I'm here for it and I'm always looking to learn and grow!",
+            f"{Fore.LIGHTBLUE_EX} OSINT:{Style.RESET_ALL} Experience in gathering and analyzing information from open sources",
+            f"{Fore.LIGHTBLUE_EX} SOC/Analyst roles:{Style.RESET_ALL} Having used basically every single major SIEM/XDR-systems known to man, along with decades of learning new software ranging from Adobe's Photoshop, AE, Premiere, moving to 3D-modelling/rendering software",
+            f"{Fore.LIGHTBLUE_EX} Problem-solving:{Style.RESET_ALL} Experience in breaking down and solving complex problems",
+            f"{Fore.LIGHTBLUE_EX} Data analysis:{Style.RESET_ALL} Experience in analyzing large amounts of data and drawing insightful conclusions"
+        ]
 
     def get_personal_info(self):
         return {
@@ -110,6 +115,7 @@ class Person:
             "Music Site": self.musicsite,
             "Interests": self.interests,
             "Hobbies": self.hobbies,
+            "Bonus Skills": self.bonus_skills,
             "Skills": [(skill.name, self.get_knowledge(skill)) for skill in self.skills],
             "Traits": self.traits,
             "Programs": [(program.name, program.category, program.description) for program in self.programs],
@@ -125,6 +131,7 @@ class Person:
         print(f"{Fore.LIGHTBLUE_EX}Website:{Style.RESET_ALL} {Fore.WHITE}{info['Website']}{Style.RESET_ALL}")
         print(f"{Fore.LIGHTBLUE_EX}Blog:{Style.RESET_ALL} {Fore.WHITE}{info['Blog']}{Style.RESET_ALL}")
         print(f"{Fore.LIGHTBLUE_EX}Music Site:{Style.RESET_ALL} {Fore.WHITE}{info['Music Site']}{Style.RESET_ALL}")
+        print(f"{Fore.LIGHTBLUE_EX}Bonus Skills:{Style.RESET_ALL} {Fore.WHITE}{', '.join(info['Bonus Skills'])}{Style.RESET_ALL}")
         print(f"\n{Fore.LIGHTBLUE_EX}Skills:{Style.RESET_ALL}")
         for skill_name, (level, score) in info["Skills"]:
             print(f"  {Fore.YELLOW}Skill:{Style.RESET_ALL} {Fore.WHITE}{skill_name}{Style.RESET_ALL}, Level: {Fore.WHITE}{level}{Style.RESET_ALL}, Score: {Fore.WHITE}{score}{Style.RESET_ALL}")
@@ -133,7 +140,7 @@ class Person:
         categories = {'Offensive': [], 'Defensive': [], 'Offensive/Defensive': []}
         for program in self.programs:
             categories[program.category].append(program)
-        
+
         for category, programs in categories.items():
             if programs:
                 color = Fore.RED if category == "Offensive" else Fore.GREEN if category == "Defensive" else Fore.YELLOW
@@ -143,22 +150,21 @@ class Person:
                 print("\n")
 
         print(f"{Fore.GREEN}Programming Languages:{Style.RESET_ALL}")
-        print(f"  {Fore.YELLOW}{', '.join(info['Programming Languages'])}{Style.RESET_ALL}")
+        print(f"  {Fore.WHITE}{', '.join(info['Programming Languages'])}{Style.RESET_ALL}")
 
         print(f"\n{Fore.GREEN}Experience:{Style.RESET_ALL}")
-        for key, value in info["Experience"].items():
-            print(f"  {Fore.YELLOW}{key}: {value}{Style.RESET_ALL}")
+        for exp in info["Experience"]:
+            print(f"{Fore.WHITE}{exp}{Style.RESET_ALL}")
 
-        about = About()
         print(f"\n{Fore.GREEN}Personality Traits:{Style.RESET_ALL}")
-        for trait in about.get_traits():
-            print(f"  {Fore.YELLOW}{trait}{Style.RESET_ALL}")
+        for trait in info["Traits"]:
+            print(f"  {Fore.CYAN}{trait}{Style.RESET_ALL}")
 
-        print(f"\n{Fore.GREEN}Hobbies:{Style.RESET_ALL}")
-        for hobby in about.get_hobbies():
-            print(f"  {Fore.YELLOW}{hobby}{Style.RESET_ALL}")
+        print(f"\n{Fore.LIGHTBLUE_EX}Hobbies:{Style.RESET_ALL}")
+        for hobby in info["Hobbies"]:
+            print(f"{Fore.CYAN}{hobby}{Style.RESET_ALL}")
 
-# Create an instance of Person and add skills and programs
+# Create an instance of Person and print the information
 victor = Person(
     firstname="Victor",
     lastname="Åhgren",
@@ -166,32 +172,24 @@ victor = Person(
     jobtitles=["Cyber Security Consultant/Analyst/Engineer"],
     website="https://victorahgren.com/",
     blog="https://victorahgren.notion.site/VICTOR-HGREN-CYBER-SECURITY-SPECIALIST-f9e8a93d1a634af09c7d1ce083ade798",
-    musicsite="https://open.spotify.com/user/XXXXX",
-    interests=[],
-    hobbies=["Cybersecurity", "Programming", "Drumming", "Making music", "Obviously spending time with close friends and family!"],
+    musicsite="https://www.youtube.com/@victorahgren560",
+    interests=['problem-solving', 'coding', 'hacking', '(quantum)-cryptography', 'Privacy', 'Freedom'],
+    bonus_skills=["2x zero-day finder"],
+    hobbies=["Cybersecurity", "Programming", "Drumming", "Making music", "Spending time with close friends and family"],
     skills=[
         Skill("Defensive security", 4.28, 3.4, 3.5),
         Skill("Offensive security", 4.6, 4.78, 4.36),
         Skill("Programming", 4.5, 4.8, 5),
         Skill("Cybersecurity", 4.7, 4.9, 5)
     ],
-    traits=["Detail-oriented", "Analytical with a very high work ethic", "Teamwork makes the dream work! I truly believe in a diverse range of opinions and personalities in a team, which all bring something different to the table, what I only care about is merit and hoping to find a workplace where people genuinely are eager to get to work, see if you and your team can crack that problem that you've spent the night thinking about, that's something truly wonderful -People loving their work, which most often rubs off and creates a really fun, productive and learning environment for everyone!"],
+    traits=["Detail-oriented", "Analytical", "Team-oriented", "High work ethic"],
     programs=[
         Program("Nessus", "Defensive", "Proprietary", "A vulnerability scanner developed by Tenable, Inc."),
-        Program("Metasploit", "Offensive", "Open-source & proprietary pro version", "A framework for developing and executing exploit code against a remote target machine."),
-        Program("Burp Suite", "Offensive", "Proprietary", "A graphical tool for testing web application security."),
-        Program("Nmap", "Offensive/Defensive", "Open-source", "A network scanning tool to discover hosts and services on a computer network."),
-        Program("Naabu", "Offensive/Defensive", "Open-source", "A fast port scanner written in Go."),
-        Program("Dnsx", "Defensive", "Open-source", "A fast and multi-purpose DNS toolkit powered by the simple and fast Golang."),
-        Program("Rapid7 InsightVM", "Defensive", "Proprietary", "A vulnerability management solution."),
-        Program("Trellix package", "Defensive", "Proprietary", "A cybersecurity package."),
-        Program("Qualys", "Defensive", "Proprietary", "A cloud-based platform for vulnerability management."),
-        Program("IBM QRadar", "Defensive", "Proprietary", "A security information and event management (SIEM) product."),
-        Program("CrowdStrike Falcon", "Defensive", "Proprietary", "A cloud-native endpoint security solution."),
-        Program("Splunk", "Defensive", "Proprietary", "A platform for searching, monitoring, and analyzing machine-generated data."),
-        Program("BBot", "Offensive", "Open-source", "A bundle of close to 100 different tools with API keys to widen its amazing capabilities")
+        Program("Metasploit", "Offensive", "Open-source & proprietary pro version", "A framework for developing and executing exploit code."),
+        Program("Nmap", "Offensive/Defensive", "Open-source", "A network scanning tool to discover hosts and services."),
+        Program("Burp Suite", "Offensive", "Proprietary", "A graphical tool for testing web application security.")
     ],
-    programming_languages=["Python", "C", "Java", "JavaScript", "C++"]
+    programming_languages=["Python", "C", "Java", "JavaScript", "C++", "Rust", "Golang", "PHP"]
 )
 
 # Print all information about Victor Åhgren
