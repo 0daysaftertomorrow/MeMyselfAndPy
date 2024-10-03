@@ -9,7 +9,7 @@ A fun little project for trying to describe myself (mostly for a bit of a new ta
 
 
 ## Table of Contents
-
+- [Preview](#preview)
 - [Introduction](#introduction)
 - [Features](#features)
 - [Setup](#setup)
